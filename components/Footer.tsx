@@ -1,53 +1,33 @@
 import Link from 'next/link';
 
-// Define explicit TypeScript types for footer navigation links
-interface FooterItem {
-  label: string;
-  href: string;
-}
-
 interface FooterProps {
   companyName?: string;
-  links?: FooterItem[];
 }
 
-// Default footer links if none are provided via props
-const defaultLinks: FooterItem[] = [
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Terms of Service', href: '/terms' },
-  { label: 'Support', href: '/support' },
-];
-
-export default function Footer({ 
-  companyName = "Project", 
-  links = defaultLinks 
+export default function Footer({
+  companyName = "Project",
 }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-gray-50 border-t border-gray-200 dark:bg-gray-900 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex flex-col sm:flex-row items-center justify-between gap-4 py-4 sm:py-0">
-        
-        {/* Copyright Notice */}
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+    <footer className="w-full bg-gray-900 text-gray-300 py-6 mt-auto border-t border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+
+        <p className="text-sm">
           &copy; {currentYear} {companyName}. All rights reserved.
         </p>
 
-        {/* Footer Navigation */}
-        <nav aria-label="Footer Navigation">
-          <ul className="flex items-center gap-6">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link 
-                  href={link.href} 
-                  className="text-xs text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="flex gap-6 text-sm">
+          <Link href="/privacy" prefetch={false} className="hover:text-white transition-colors">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" prefetch={false} className="hover:text-white transition-colors">
+            Terms of Service
+          </Link>
+          <Link href="/contact" prefetch={false} className="hover:text-white transition-colors">
+            Contact
+          </Link>
+        </div>
 
       </div>
     </footer>
