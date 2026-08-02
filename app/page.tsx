@@ -1,16 +1,5 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <section>
-      <Image
-        className="dark:invert"
-        src="/next.svg"
-        alt="Next.js logo"
-        width={100}
-        height={20}
-        priority
-      />
-    </section>
+    <h1 className="text-center m-3">Home</h1>
   );
 }
