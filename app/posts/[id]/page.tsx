@@ -1,10 +1,5 @@
+import { Post } from "@/types";
 import { notFound } from "next/navigation";
-
-type Post = {
-    id: number,
-    title: string,
-    body?: string,
-};
 
 type PostPageProps = {
     params: Promise<{ id: number }>
@@ -13,7 +8,7 @@ type PostPageProps = {
 export default async function PostPage({ params }: PostPageProps) {
     const { id } = await params;
     const result = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-    const post = await result.json();
+    const post: Post = await result.json();
 
     if (!id) {
         notFound();
