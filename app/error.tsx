@@ -1,14 +1,9 @@
 'use client'
 
+import { PostgrestError } from '@supabase/supabase-js';
 import { useEffect } from 'react';
 
-export default function ErrorPage({
-    error,
-    unstable_retry,
-}: {
-    error: Error & { digest?: string }
-    unstable_retry: () => void
-}) {
+export default function ErrorPage(error: PostgrestError) {
     useEffect(() => {
         console.error(error)
     }, [error])
@@ -16,14 +11,6 @@ export default function ErrorPage({
     return (
         <div>
             <h2>Something went wrong!</h2>
-            <button
-                onClick={
-                    // Attempt to recover by re-fetching and re-rendering the segment
-                    () => unstable_retry()
-                }
-            >
-                Try again
-            </button>
         </div>
     )
 }
