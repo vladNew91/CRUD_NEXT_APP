@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Post } from "@/types";
 import { supabase } from "@/utils/supabase/client";
-import { createPost } from "@/actions/actions";
 import { DeleteButton } from "@/components/DeleteButton";
 
 export default async function PostsPage() {
@@ -11,94 +10,37 @@ export default async function PostsPage() {
   const countPosts = posts && posts.length | 0;
 
   return (
-    <>
-      <h1 className="m-3">All posts: {countPosts}</h1>
-      <ul className="m-3">
+    <section className="w-md p-4 sm:p-6 lg:p-8 font-sans">
+      <h2 className="m-3 font-semibold text-lg">
+        All posts: <b>{countPosts}</b>
+      </h2>
+
+      {/* Empty State */}
+      {posts?.length === 0 && (
+        <div className="text-center py-16 rounded-2xl shadow-sm dark:bg-gray-800">
+          <p className="text-slate-400 text-lg font-medium">No posts found</p>
+        </div>
+      )}
+
+      {/* List of Posts */}
+      <ul>
         {posts &&
           posts.map((post: Post, i: number) => (
-            <li className="max-w-md" key={post.id}>
-              <div className="flex justify-between">
-                <Link href={`/posts/${post.id}`}>
-                  {++i}: {post.title}
-                </Link>
+            <li
+              key={post.id}
+              className="group my-2 p-3 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 flex items-start justify-between gap-6 dark:bg-gray-800"
+            >
+              <Link href={`/posts/${post.id}`}>
+                <h3 className="text-xl font-bold group-hover:text-blue-600 transition-colors">
+                  {++i}. {post.title}
+                </h3>
+                <span className="text-sm text-gray-400">{post.body}</span>
+              </Link>
 
-                <DeleteButton id={post.id} />
-              </div>
+              <DeleteButton id={post.id} />
             </li>
           ))}
       </ul>
-
-      <div
-        className="
-        max-w-md
-        p-3
-        bg-white
-        dark:bg-gray-800
-        rounded-xl
-        shadow-md
-        border-gray-100
-        dark:border-gray-700"
-      >
-        <form className="space-y-4" action={createPost}>
-          <h3>Create post</h3>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Title
-            </label>
-
-            <input
-              type="text"
-              id="title"
-              name="title"
-              className="
-                w-full
-                mt-1
-                px-3
-                py-2
-                border
-                rounded-lg
-                focus:ring-2
-                focus:ring-blue-500
-                dark:bg-gray-900
-                dark:border-gray-700
-                dark:text-white"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Content
-            </label>
-
-            <input
-              type="text"
-              id="body"
-              name="body"
-              className="
-                w-full
-                mt-1
-                px-3
-                py-2
-                border
-                rounded-lg
-                focus:ring-2
-                focus:ring-blue-500
-                dark:bg-gray-900
-                dark:border-gray-
-                dark:text-white"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </>
+    </section>
   );
 }
