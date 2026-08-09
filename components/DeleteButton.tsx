@@ -12,13 +12,7 @@ export const DeleteButton = ({ id }: DeleteButtonProps) => {
   return (
     <button
       onClick={handleDelete}
-      className="
-        min-w-20
-        p-1
-        bg-red-600
-        text-white
-        rounded-lg
-        hover:bg-red-700"
+      className="min-w-20 rounded-lg bg-red-600 p-1 text-white hover:bg-red-700"
     >
       Delete
     </button>

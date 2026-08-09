@@ -29,9 +29,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex flex-col min-screen-repair min-h-screen">
+      <body className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex justify-center items-center h-screen">
+        <main className="flex min-h-[80vh] items-center justify-center">
           {children}
         </main>
         <Footer companyName="Project" />

@@ -8,8 +8,8 @@ export default function Footer({ companyName = "Project" }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-gray-900 text-gray-300 py-6 mt-auto border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <footer className="mt-auto w-full border-t border-gray-800 bg-gray-900 py-6 text-gray-300">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row">
         <p className="text-sm">
           &copy; {currentYear} {companyName}. All rights reserved.
         </p>
@@ -18,21 +18,21 @@ export default function Footer({ companyName = "Project" }: FooterProps) {
           <Link
             href="/privacy"
             prefetch={false}
-            className="hover:text-white transition-colors"
+            className="transition-colors hover:text-white"
           >
             Privacy Policy
           </Link>
           <Link
             href="/terms"
             prefetch={false}
-            className="hover:text-white transition-colors"
+            className="transition-colors hover:text-white"
           >
             Terms of Service
           </Link>
           <Link
             href="/contact"
             prefetch={false}
-            className="hover:text-white transition-colors"
+            className="transition-colors hover:text-white"
           >
             Contact
           </Link>

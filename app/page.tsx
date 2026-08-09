@@ -1,17 +1,14 @@
 import { createPost } from "@/actions/actions";
+import SubmitFormBtn from "@/components/SubmitFormBtn";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
     <div
-      className="
-        w-md
-        p-3
-        bg-white
-        dark:bg-gray-800
-        rounded-xl
-        shadow-md
-        border-gray-100
-        dark:border-gray-700"
+      className={cn(
+        "w-md rounded-xl border-gray-100",
+        "bg-white p-3 shadow-md dark:border-gray-700 dark:bg-gray-800",
+      )}
     >
       <form className="space-y-4" action={createPost}>
         <h3>Create post</h3>
@@ -24,17 +21,10 @@ export default function Home() {
             type="text"
             id="title"
             name="title"
-            className="
-                w-full
-                mt-1
-                px-3
-                py-2
-                border
-                rounded-lg
-                focus:ring-2
-                focus:ring-blue-500
-                dark:bg-gray-900
-                dark:text-white"
+            className={cn(
+              "mt-1 w-full rounded-lg border px-3 py-2 focus:ring-2",
+              "focus:ring-blue-500 dark:bg-gray-900 dark:text-white",
+            )}
             required
           />
         </div>
@@ -48,28 +38,15 @@ export default function Home() {
             type="text"
             id="body"
             name="body"
-            className="
-                w-full
-                mt-1
-                px-3
-                py-2
-                border
-                rounded-lg
-                focus:ring-2
-                focus:ring-blue-500
-                dark:bg-gray-900
-                dark:border-gray-700
-                dark:text-white"
+            className={cn(
+              "mt-1 w-full py-2 focus:ring-blue-500 dark:border-gray-700",
+              "rounded-lg border px-3 focus:ring-2 dark:bg-gray-900 dark:text-white",
+            )}
             required
           />
         </div>
 
-        <button
-          type="submit"
-          className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          Submit
-        </button>
+        <SubmitFormBtn />
       </form>
     </div>
   );
