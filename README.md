@@ -2,7 +2,7 @@
 
 A production-ready **CRUD (Create, Read, Update, Delete) web application** built with the **Next.js App Router** and **Supabase**. This project demonstrates how to leverage Server Components for fast data fetching and Server Actions for secure database mutations without creating manual API routes.
 
-[Demo](https://crud-next-24ymrrsy9-vladnew91s-projects.vercel.app/)
+[Demo](https://crud-next-app-vladnew91.vercel.app/)
 
 ## Key Features
 
