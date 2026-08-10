@@ -22,6 +22,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { LoginButton } from "../components/LoginBTN";
 
 const products = [
   {
@@ -38,7 +39,7 @@ const products = [
   },
 ];
 
-export default function Example() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -135,6 +136,7 @@ export default function Example() {
             Posts
           </Link>
         </PopoverGroup>
+
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm/6 font-semibold text-white">
             Log in <span aria-hidden="true">&rarr;</span>
@@ -220,12 +222,7 @@ export default function Example() {
                 </Link>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
-                >
-                  Log in
-                </a>
+                <LoginButton />
               </div>
             </div>
           </div>
