@@ -1,11 +1,9 @@
 import { cn } from "@/lib/utils";
-import { auth } from "@/auth/auth";
 import { createPost } from "@/actions/actions";
 import SubmitFormBtn from "@/components/SubmitFormBtn";
+import { CreatePostWelcome } from "@/ui";
 
-export default async function Home() {
-  const session = await auth();
-
+export default function Home() {
   return (
     <div
       className={cn(
@@ -14,11 +12,7 @@ export default async function Home() {
       )}
     >
       <form className="space-y-4" action={createPost}>
-        <h3>
-          {!session
-            ? "Create post"
-            : `Welcome, ${session.user?.name} create post`}
-        </h3>
+        <CreatePostWelcome />
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Title
@@ -52,7 +46,6 @@ export default async function Home() {
             required
           />
         </div>
-
         <SubmitFormBtn />
       </form>
     </div>
