@@ -1,19 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { LoginButton } from "../components/LoginBTN";
+import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { HiOutlineHome } from "react-icons/hi2";
+import { LoginButton } from "../components";
 
 interface HeaderProps {
   appName?: string;
 }
 
-export default function Header({ appName }: HeaderProps) {
+export const Header = ({ appName }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
 
   return (
     <header className="bg-gray-900">
@@ -39,7 +42,7 @@ export default function Header({ appName }: HeaderProps) {
         <div className="flex lg:hidden">
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={toggleMobileMenu}
             className={cn(
               "-m-2.5 inline-flex cursor-pointer items-center justify-center",
               "rounded-md p-2.5 text-gray-400 transition-colors hover:text-white",
@@ -49,9 +52,12 @@ export default function Header({ appName }: HeaderProps) {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
+
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <Link href="/" className="text-sm/6 font-semibold text-white">
-            Home
+          <Link href="/">
+            <span title="Home">
+              <HiOutlineHome className="size-6" />
+            </span>
           </Link>
 
           <Link href="/posts" className="text-sm/6 font-semibold text-white">
@@ -66,7 +72,7 @@ export default function Header({ appName }: HeaderProps) {
 
       <Dialog
         open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
+        onClose={toggleMobileMenu}
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-50" />
@@ -88,21 +94,24 @@ export default function Header({ appName }: HeaderProps) {
                 priority
               />
             </Link>
+
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={toggleMobileMenu}
               className="-m-2.5 cursor-pointer rounded-md p-2.5 text-gray-400 transition-colors hover:text-white"
             >
               <span className="sr-only">Close menu</span>
               <XMarkIcon aria-hidden="true" className="size-6" />
             </button>
           </div>
+
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-white/10">
               <div className="space-y-2 py-4">
                 <Link
                   href="/"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                  onClick={toggleMobileMenu}
                 >
                   Home
                 </Link>
@@ -110,6 +119,7 @@ export default function Header({ appName }: HeaderProps) {
                 <Link
                   href="/posts"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                  onClick={toggleMobileMenu}
                 >
                   Posts
                 </Link>
@@ -123,4 +133,4 @@ export default function Header({ appName }: HeaderProps) {
       </Dialog>
     </header>
   );
-}
+};

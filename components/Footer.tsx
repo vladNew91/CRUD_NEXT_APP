@@ -4,7 +4,7 @@ interface FooterProps {
   appName?: string;
 }
 
-export default function Footer({ appName }: FooterProps) {
+export const Footer = ({ appName }: FooterProps) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -42,4 +42,4 @@ export default function Footer({ appName }: FooterProps) {
       </div>
     </footer>
   );
-}
+};

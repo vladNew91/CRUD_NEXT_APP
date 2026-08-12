@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Post } from "@/types";
-import { DeleteButton } from "@/components/DeleteButton";
+import { DeleteButton } from "@/components";
 import { cookies } from "next/headers";
 import { cn } from "@/lib/utils";
 

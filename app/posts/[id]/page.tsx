@@ -18,7 +18,7 @@ export default async function PostPage({ params }: PostPageProps) {
     .single<Post>();
 
   if (!post || !id) return notFound();
-  if (error) return ErrorPage(error);
+  if (error) return ErrorPage();
 
   return (
     <section

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { createPost } from "@/actions/actions";
-import SubmitFormBtn from "@/components/SubmitFormBtn";
+import { SubmitFormButton } from "@/components";
 import { CreatePostWelcome } from "@/ui";
 
 export default function Home() {
@@ -46,7 +46,7 @@ export default function Home() {
             required
           />
         </div>
-        <SubmitFormBtn />
+        <SubmitFormButton />
       </form>
     </div>
   );

@@ -11,7 +11,7 @@ export default async function PostsPage() {
     .returns<Post[]>();
   const countPosts = posts && posts.length | 0;
 
-  if (error || !posts) return ErrorPage(error);
+  if (error || !posts) return ErrorPage();
 
   return (
     <section className="w-md p-4 font-sans sm:p-6 lg:p-8">
