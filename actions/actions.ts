@@ -1,7 +1,8 @@
 "use server";
 
-import { supabase } from "@/utils/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createPost(formData: FormData) {
   const title = formData.get("title") as string;
@@ -27,4 +28,23 @@ export async function updatePost(formData: FormData) {
 export async function deletePost(id: number) {
   await supabase.from("posts").delete().eq("id", id);
   revalidatePath("posts");
+}
+
+export async function handleSignUp(formData: FormData) {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/dashboard`,
+    },
+  });
+
+  if (error) {
+    redirect("/error");
+  }
+
+  redirect("/dashboard");
 }

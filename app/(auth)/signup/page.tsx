@@ -1,9 +1,16 @@
-import { cn } from "@/utils/utils";
-import { createPost } from "@/actions/actions";
+import { handleSignUp } from "@/actions/actions";
 import { SubmitFormButton } from "@/components";
-import { CreatePostWelcome } from "@/ui";
+import { createSupabaseServerClient } from "@/lib/supabase/server-client";
+import { cn } from "@/utils/utils";
 
-export default function Home() {
+export default async function SignUpPage() {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  console.log({ user });
+
   return (
     <div
       className={cn(
@@ -11,17 +18,16 @@ export default function Home() {
         "bg-white p-3 shadow-md dark:border-gray-700 dark:bg-gray-800",
       )}
     >
-      <form className="space-y-4" action={createPost}>
-        <CreatePostWelcome />
+      <form className="space-y-4" action={handleSignUp}>
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Title
+            Mail
           </label>
 
           <input
             type="text"
-            id="title"
-            name="title"
+            id="email"
+            name="email"
             className={cn(
               "mt-1 w-full rounded-lg border px-3 py-2 focus:ring-2",
               "focus:ring-blue-500 dark:bg-gray-900 dark:text-white",
@@ -32,13 +38,13 @@ export default function Home() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Content
+            Password
           </label>
 
           <input
             type="text"
-            id="body"
-            name="body"
+            id="password"
+            name="password"
             className={cn(
               "mt-1 w-full py-2 focus:ring-blue-500 dark:border-gray-700",
               "rounded-lg border px-3 focus:ring-2 dark:bg-gray-900 dark:text-white",
@@ -46,7 +52,7 @@ export default function Home() {
             required
           />
         </div>
-        <SubmitFormButton title="Create post" />
+        <SubmitFormButton title="Sign up" />
       </form>
     </div>
   );

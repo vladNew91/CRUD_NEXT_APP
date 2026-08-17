@@ -1,4 +1,4 @@
-import { auth } from "@/auth/auth";
+import { auth } from "@/app/(auth)/auth";
 
 export const CreatePostWelcome = async () => {
   const session = await auth();

@@ -2,8 +2,8 @@ import { updatePost } from "@/actions/actions";
 import notFound from "@/app/not-found";
 import ErrorPage from "@/app/error";
 import { Post } from "@/types";
-import { supabase } from "@/utils/supabase/client";
-import { cn } from "@/lib/utils";
+import { supabase } from "@/lib/supabase/client";
+import { cn } from "@/utils/utils";
 
 type PostPageProps = {
   params: Promise<{ id: number }>;

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { HiOutlineHome } from "react-icons/hi2";
@@ -60,12 +60,19 @@ export const Header = ({ appName }: HeaderProps) => {
             </span>
           </Link>
 
-          <Link href="/posts" className="text-sm/6 font-semibold text-white">
+          <Link href="/posts" className="font-semibold text-white">
             Posts
           </Link>
         </PopoverGroup>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <Link
+            href="/signup"
+            className="mx-1 box-border block rounded-md p-1 text-sm/6 font-semibold text-white hover:bg-white/5"
+          >
+            Sign Up
+          </Link>
+
           <LoginButton />
         </div>
       </nav>
@@ -125,6 +132,13 @@ export const Header = ({ appName }: HeaderProps) => {
                 </Link>
               </div>
               <div className="py-6">
+                <Link
+                  href="/signup"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                  onClick={toggleMobileMenu}
+                >
+                  Sign Up
+                </Link>
                 <LoginButton />
               </div>
             </div>
