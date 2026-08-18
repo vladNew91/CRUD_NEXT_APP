@@ -43,8 +43,11 @@ export async function handleSignUp(formData: FormData) {
   });
 
   if (error) {
+    console.log(error);
     redirect("/error");
   }
+
+  revalidatePath("/");
 
   redirect("/dashboard");
 }

@@ -2,8 +2,8 @@ import { BtcChart } from "@/components/btc-chart";
 
 export default function Dashboard() {
   return (
-    <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+    <section style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <BtcChart />
-    </main>
+    </section>
   );
 }

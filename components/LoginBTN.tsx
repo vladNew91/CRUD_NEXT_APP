@@ -6,11 +6,11 @@ export function LoginButton() {
 
   return (
     <button
-      className="box-border block rounded-lg p-1 font-semibold text-white hover:bg-white/5"
+      className="box-border cursor-pointer rounded-lg p-2 font-semibold text-white hover:bg-white/5"
       onClick={signInGitHub}
     >
       <span title="Login with GitHub">
-        <FiGithub />
+        <FiGithub size={20} />
       </span>
     </button>
   );

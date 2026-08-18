@@ -7,7 +7,6 @@ import { cn } from "@/utils/utils";
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { HiOutlineHome } from "react-icons/hi2";
-import { LoginButton } from "../components";
 
 interface HeaderProps {
   appName?: string;
@@ -66,14 +65,7 @@ export const Header = ({ appName }: HeaderProps) => {
         </PopoverGroup>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            href="/signup"
-            className="mx-1 box-border block rounded-md p-1 text-sm/6 font-semibold text-white hover:bg-white/5"
-          >
-            Sign Up
-          </Link>
-
-          <LoginButton />
+          <Link href="/login">Login</Link>
         </div>
       </nav>
 
@@ -131,15 +123,15 @@ export const Header = ({ appName }: HeaderProps) => {
                   Posts
                 </Link>
               </div>
+
               <div className="py-6">
                 <Link
-                  href="/signup"
+                  href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                   onClick={toggleMobileMenu}
                 >
-                  Sign Up
+                  Log in
                 </Link>
-                <LoginButton />
               </div>
             </div>
           </div>
