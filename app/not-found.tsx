@@ -1,10 +1,11 @@
 import { cn } from "@/utils/utils";
 import Link from "next/link";
+import "./globals.css";
 
 export default function NotFound() {
   return (
-    <main className="grid place-items-center p-2">
-      <section className="text-center">
+    <main className="flex justify-center">
+      <section className="flex h-screen flex-col justify-center text-center">
         {/* Animated Gradient Accent */}
         <p className="animate-pulse text-[12rem] font-semibold text-indigo-400">
           404

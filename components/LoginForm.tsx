@@ -1,7 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { LoginButton } from "./LoginBTN";
+import { LogInGitHubButton } from "./LogInGitHubButton";
 import { handleSignUp } from "@/actions/actions";
 
 export const LoginForm = () => {
@@ -76,7 +74,7 @@ export const LoginForm = () => {
       </div>
 
       <div className="flex justify-center">
-        <LoginButton />
+        <LogInGitHubButton />
       </div>
     </>
   );

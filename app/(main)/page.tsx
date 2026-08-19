@@ -3,7 +3,7 @@ import { createPost } from "@/actions/actions";
 import { SubmitFormButton } from "@/components";
 import { CreatePostWelcome } from "@/ui";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div
       className={cn(

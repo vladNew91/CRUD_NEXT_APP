@@ -1,9 +1,11 @@
 "use client";
 
+import "./globals.css";
+
 export default function ErrorPage() {
   return (
-    <div>
+    <section>
       <h2>Something went wrong!</h2>
-    </div>
+    </section>
   );
 }

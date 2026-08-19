@@ -3,6 +3,11 @@ import GitHub from "next-auth/providers/github";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [GitHub],
+  callbacks: {
+    async redirect({ baseUrl }) {
+      return `${baseUrl}/dashboard`;
+    },
+  },
 });
 
 export const { GET, POST } = handlers;
