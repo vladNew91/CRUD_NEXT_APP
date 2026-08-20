@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { LogInGitHubButton } from "./LogInGitHubButton";
 import { handleSignUp } from "@/actions/actions";
+import { SignInGitHubButton } from "./AuthGitHubBtns";
 
-export const LoginForm = () => {
+export const SignInForm = () => {
   return (
     <>
       {/* Form Header */}
@@ -69,12 +69,12 @@ export const LoginForm = () => {
           <div className="w-full border-t border-zinc-200 dark:border-zinc-800"></div>
         </div>
         <span className="relative bg-white px-3 text-xs text-zinc-400 uppercase dark:bg-zinc-950">
-          Or login with:
+          Or sign in with:
         </span>
       </div>
 
       <div className="flex justify-center">
-        <LogInGitHubButton />
+        <SignInGitHubButton />
       </div>
     </>
   );

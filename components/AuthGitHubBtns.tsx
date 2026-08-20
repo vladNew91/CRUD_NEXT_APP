@@ -3,7 +3,7 @@
 import { signIn, signOut } from "next-auth/react";
 import { FiGithub } from "react-icons/fi";
 
-export function LogInGitHubButton() {
+export const SignInGitHubButton = () => {
   const signInGitHub = async () => await signIn("github");
 
   return (
@@ -16,15 +16,17 @@ export function LogInGitHubButton() {
       </span>
     </button>
   );
-}
+};
 
-export function LogOutGitHubButton() {
+export const SignOutGitHubButton = () => {
+  const signOutGitHub = async () => await signOut();
+
   return (
     <button
       className="-mx-3 block cursor-pointer rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-      onClick={() => signOut()}
+      onClick={signOutGitHub}
     >
       Sign Out
     </button>
   );
-}
+};

@@ -1,7 +1,7 @@
-import { LoginForm } from "@/components";
+import { SignInForm } from "@/components";
 import { cn } from "@/utils/utils";
 
-export default async function Login() {
+export default async function SignIn() {
   return (
     <section className="flex min-h-screen w-full items-center justify-center px-4">
       <div
@@ -10,7 +10,7 @@ export default async function Login() {
           "shadow-[0_0_15px_rgba(34,211,238,0.7),inset_0_0_15px_rgba(34,211,238,0.5)]",
         )}
       >
-        <LoginForm />
+        <SignInForm />
       </div>
     </section>
   );

@@ -3,8 +3,8 @@ import Image from "next/image";
 import { PopoverGroup } from "@headlessui/react";
 import { HiOutlineHome } from "react-icons/hi2";
 import { MobileMenu } from "./MobileMenu";
-import { LogOutGitHubButton } from "./LogInGitHubButton";
 import { checkUserSession } from "@/utils/utils";
+import { SignOutGitHubButton } from "../components";
 
 interface HeaderProps {
   appName?: string;
@@ -53,11 +53,11 @@ export const Header = async ({ appName }: HeaderProps) => {
         {/* Desktop Action */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {!isSignedIn ? (
-            <Link href="/login" className="font-semibold text-white">
-              Login
+            <Link href="/signin" className="font-semibold text-white">
+              Sign in
             </Link>
           ) : (
-            <LogOutGitHubButton />
+            <SignOutGitHubButton />
           )}
         </div>
       </nav>
