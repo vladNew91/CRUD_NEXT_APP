@@ -1,12 +1,11 @@
 import { cn } from "@/utils/utils";
 import Link from "next/link";
-import { login, loginWithGitHub } from "../actions";
-import { FiGithub } from "react-icons/fi";
+import { signup } from "../actions";
 
-export default async function SignInPage({
+export default async function SignUpPage({
   searchParams,
 }: {
-  searchParams: Promise<{ message?: string; error?: string }>;
+  searchParams: Promise<{ error?: string }>;
 }) {
   const params = await searchParams;
 
@@ -14,13 +13,13 @@ export default async function SignInPage({
     <section className="flex min-h-screen w-full items-center justify-center">
       <div
         className={cn(
-          "w-full max-w-md rounded-2xl p-8 pb-5",
+          "w-full max-w-md rounded-2xl p-8",
           "shadow-[0_0_20px_rgba(34,211,238,1),inset_0_0_20px_rgba(34,211,238,0.3)]",
         )}
       >
-        <h2 className="mb-4 text-center text-2xl">Sign in</h2>
+        <h2 className="mb-4 text-center text-2xl">Sign up</h2>
 
-        <form action={login} className="space-y-4">
+        <form action={signup} className="space-y-4">
           <div className="space-y-1">
             <label
               htmlFor="email"
@@ -59,45 +58,22 @@ export default async function SignInPage({
           </div>
 
           <div className="text-xs font-medium dark:text-zinc-300">
-            <span className="mr-2">Don&apos;t have an Account?</span>
-            <Link href={"/signup"} className="text-blue-300">
-              Sign up
+            <span className="mr-2">Already have an Account?</span>
+            <Link href={"/signin"} className="text-blue-300">
+              Sign in
             </Link>
           </div>
 
+          {/* Dynamic Provider Error Notice Box */}
           {params.error && (
-            <p className="text-s text-red-500">{params.error}</p>
-          )}
-          {params.message && (
-            <p className="text-s text-green-500">{params.message}</p>
+            <div className="text-sm dark:text-green-600">{params.error}</div>
           )}
 
           <button
             type="submit"
             className="text-m w-full cursor-pointer rounded-lg bg-zinc-900 px-4 py-2 font-medium text-white transition-colors hover:bg-zinc-800 focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 focus:outline-none dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
-            Log in
-          </button>
-        </form>
-
-        {/* Social Provider Options */}
-        <div className="relative my-2 flex items-center justify-center">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-zinc-200 dark:border-zinc-800"></div>
-          </div>
-          <span className="relative bg-white px-3 text-xs text-zinc-400 uppercase dark:bg-zinc-950">
-            Or log in with:
-          </span>
-        </div>
-
-        <form action={loginWithGitHub} className="flex justify-center">
-          <button
-            className="box-border cursor-pointer rounded-lg p-2 font-semibold text-white hover:bg-white/5"
-            type="submit"
-          >
-            <span title="Sign in with GitHub">
-              <FiGithub size={20} />
-            </span>
+            Continue
           </button>
         </form>
       </div>

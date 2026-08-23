@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Post } from "@/types";
 import ErrorPage from "@/app/error";
 import PostsList from "@/components/PostsList";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/utils/supabase/client";
 
 export default async function PostsPage() {
   const { data: posts, error } = await supabase

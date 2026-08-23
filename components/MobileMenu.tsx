@@ -6,7 +6,7 @@ import Image from "next/image";
 import { cn } from "@/utils/utils";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { SignOutGitHubButton } from "./AuthGitHubBtns";
+import { SignOutBtn } from "./SignOutBtn";
 
 interface MobileMenuProps {
   appName?: string;
@@ -103,14 +103,11 @@ export const MobileMenu = ({ appName, isSignedIn }: MobileMenuProps) => {
 
                 <div className="py-6">
                   {!isSignedIn ? (
-                    <Link
-                      href="/signin"
-                      className="-mx-3 block w-max rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                    >
+                    <Link href="/signin" className="text-base/7 text-white">
                       Sign in
                     </Link>
                   ) : (
-                    <SignOutGitHubButton />
+                    <SignOutBtn />
                   )}
                 </div>
               </div>

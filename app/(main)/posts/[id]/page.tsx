@@ -1,8 +1,8 @@
-import { updatePost } from "@/actions/actions";
+import { updatePost } from "@/app/(auth)/actions";
 import notFound from "@/app/not-found";
 import ErrorPage from "@/app/error";
 import { Post } from "@/types";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/utils/supabase/client";
 import { cn } from "@/utils/utils";
 
 type PostPageProps = {
@@ -18,7 +18,7 @@ export default async function PostPage({ params }: PostPageProps) {
     .single<Post>();
 
   if (!post || !id) return notFound();
-  if (error) return ErrorPage();
+  if (error) return ErrorPage(error);
 
   return (
     <section

@@ -3,15 +3,18 @@ import Image from "next/image";
 import { PopoverGroup } from "@headlessui/react";
 import { HiOutlineHome } from "react-icons/hi2";
 import { MobileMenu } from "./MobileMenu";
-import { checkUserSession } from "@/utils/utils";
-import { SignOutGitHubButton } from "../components";
+import { SignOutBtn } from "../components";
+import { createClient } from "@/utils/supabase/server";
 
 interface HeaderProps {
   appName?: string;
 }
 
 export const Header = async ({ appName }: HeaderProps) => {
-  const isSignedIn = await checkUserSession();
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
     <header className="bg-gray-900">
@@ -35,7 +38,7 @@ export const Header = async ({ appName }: HeaderProps) => {
         </div>
 
         {/* Dynamic Client Menu for Mobile */}
-        <MobileMenu appName={appName} isSignedIn={!!isSignedIn} />
+        <MobileMenu appName={appName} isSignedIn={!!user} />
 
         {/* Desktop Navigation */}
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
@@ -52,12 +55,12 @@ export const Header = async ({ appName }: HeaderProps) => {
 
         {/* Desktop Action */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {!isSignedIn ? (
-            <Link href="/signin" className="font-semibold text-white">
+          {!user ? (
+            <Link href="/signin" className="text-base/7 text-white">
               Sign in
             </Link>
           ) : (
-            <SignOutGitHubButton />
+            <SignOutBtn />
           )}
         </div>
       </nav>

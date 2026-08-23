@@ -1,5 +1,5 @@
 import { cn } from "@/utils/utils";
-import { createPost } from "@/actions/actions";
+import { createPost } from "@/app/(auth)/actions";
 import { SubmitFormButton } from "@/components";
 import { CreatePostWelcome } from "@/ui";
 
