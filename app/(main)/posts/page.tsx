@@ -9,9 +9,9 @@ export default async function PostsPage() {
     .from<"posts", Post>("posts")
     .select("*")
     .returns<Post[]>();
-  const countPosts = posts && posts.length | 0;
+  const countPosts = posts ? posts.length : 0;
 
-  if (error || !posts) return ErrorPage();
+  if (error || !posts) return ErrorPage(error as never);
 
   return (
     <section className="w-md p-4 font-sans sm:p-6 lg:p-8">
@@ -20,7 +20,7 @@ export default async function PostsPage() {
       </h2>
 
       {/* Empty State */}
-      {posts?.length === 0 && (
+      {posts.length === 0 && (
         <div className="rounded-2xl py-16 text-center shadow-sm dark:bg-gray-800">
           <p className="text-lg font-medium text-slate-400">No posts found</p>
         </div>

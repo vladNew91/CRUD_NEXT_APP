@@ -6,10 +6,13 @@ export const CreatePostWelcome = async () => {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const userName =
+    user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email;
+
   return (
     <>
       <h3 className="whitespace-pre-line">
-        {!user ? "Create post" : `Welcome, ${user.email}!\nCreate post.`}
+        {!user ? "Create post" : `Welcome, ${userName}!\nCreate post.`}
       </h3>
     </>
   );

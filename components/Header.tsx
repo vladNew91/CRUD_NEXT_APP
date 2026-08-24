@@ -51,6 +51,12 @@ export const Header = async ({ appName }: HeaderProps) => {
           <Link href="/posts" className="font-semibold text-white">
             Posts
           </Link>
+
+          {user && (
+            <Link href="/dashboard" className="font-semibold text-white">
+              Dashboard
+            </Link>
+          )}
         </PopoverGroup>
 
         {/* Desktop Action */}
