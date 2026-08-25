@@ -1,4 +1,4 @@
-import { updatePost } from "@/app/(auth)/actions";
+import { updatePost } from "../actions";
 import notFound from "@/app/not-found";
 import ErrorPage from "@/app/error";
 import { Post } from "@/types";

@@ -1,6 +1,6 @@
 "use client";
 
-import { deletePost } from "@/app/(auth)/actions";
+import { deletePost } from "@/app/(main)/posts/actions";
 
 type DeleteButtonProps = {
   id: number;

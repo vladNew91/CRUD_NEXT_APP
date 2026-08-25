@@ -38,7 +38,7 @@ export const Header = async ({ appName }: HeaderProps) => {
         </div>
 
         {/* Dynamic Client Menu for Mobile */}
-        <MobileMenu appName={appName} isSignedIn={!!user} />
+        <MobileMenu appName={appName} user={user} />
 
         {/* Desktop Navigation */}
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">

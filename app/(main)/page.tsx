@@ -1,5 +1,5 @@
 import { cn } from "@/utils/utils";
-import { createPost } from "@/app/(auth)/actions";
+import { createPost } from "./posts/actions";
 import { SubmitFormButton, CreatePostWelcome } from "@/components";
 
 export default async function Home() {

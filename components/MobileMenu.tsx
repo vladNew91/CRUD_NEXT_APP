@@ -7,13 +7,14 @@ import { cn } from "@/utils/utils";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { SignOutBtn } from "./SignOutBtn";
+import { User } from "@supabase/supabase-js";
 
 interface MobileMenuProps {
   appName?: string;
-  isSignedIn: boolean;
+  user: User | null;
 }
 
-export const MobileMenu = ({ appName, isSignedIn }: MobileMenuProps) => {
+export const MobileMenu = ({ appName, user }: MobileMenuProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
 
@@ -99,10 +100,20 @@ export const MobileMenu = ({ appName, isSignedIn }: MobileMenuProps) => {
                   >
                     Posts
                   </Link>
+
+                  {user && (
+                    <Link
+                      href="/dashboard"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                      onClick={toggleMobileMenu}
+                    >
+                      Dashboard
+                    </Link>
+                  )}
                 </div>
 
                 <div className="py-6">
-                  {!isSignedIn ? (
+                  {!user ? (
                     <Link href="/signin" className="text-base/7 text-white">
                       Sign in
                     </Link>
