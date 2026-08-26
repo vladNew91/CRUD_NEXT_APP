@@ -43,7 +43,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #17171700;
 
   color-scheme: light;
   --background: oklch(1 0 0);
@@ -64,7 +64,7 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.7 0.18 55);
+  --chart-1: #f07900;
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
@@ -166,5 +166,5 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  height: 100vh;
+  height: 100%;
 }

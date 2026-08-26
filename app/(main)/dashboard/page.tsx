@@ -1,4 +1,4 @@
-import { BtcChart } from "@/components/btc-chart";
+import { BtcChart, CryptoCard } from "@/components";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -9,16 +9,23 @@ export default async function Dashboard() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Safely extract metadata provided by GitHub or email signup
-  // const avatarUrl = user?.user_metadata?.avatar_url
-  // const fullName = user?.user_metadata?.full_name || 'User'
-
   if (!user) redirect("/signin");
 
   return (
-    <section style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h2>Welcome, {user.email}</h2>
+    <section className="w-full px-3">
+      <h1 className="my-4 text-2xl">Welcome, {user?.email}</h1>
       <BtcChart />
+
+      <div className="my-10 flex flex-row flex-wrap gap-3">
+        <CryptoCard pare="BTCUSDT" />
+        <CryptoCard pare="ETHUSDT" />
+        <CryptoCard pare="XRPUSDT" />
+        <CryptoCard pare="BCHUSDT" />
+        <CryptoCard pare="BNBUSDT" />
+        <CryptoCard pare="DOGEUSDT" />
+        <CryptoCard pare="ZECUSDT" />
+        <CryptoCard pare="XMRUSDT" />
+      </div>
     </section>
   );
 }

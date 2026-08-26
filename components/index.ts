@@ -6,3 +6,5 @@ export * from "./SubmitFormBtn";
 export * from "./AreaChartContainer";
 export * from "./MobileMenu";
 export * from "./ui";
+export * from "./btc-chart";
+export * from "./CryptoCard";
