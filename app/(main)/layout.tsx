@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header, Footer } from "@/components";
+import { Analytics } from "@vercel/analytics/next";
 import "./../globals.css";
 
 const appName = "CRUD Next App";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <Header appName={appName} />
         <main className="m-auto flex max-w-7xl">{children}</main>
         <Footer appName={appName} />
+        <Analytics />
       </body>
     </html>
   );

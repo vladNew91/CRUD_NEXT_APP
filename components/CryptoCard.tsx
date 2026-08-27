@@ -1,43 +1,77 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { CoinData } from "@/types";
-
-async function getCoinPrice({
-  pare,
-}: {
-  pare: string;
-}): Promise<CoinData | null> {
-  try {
-    const res = await fetch(
-      `https://api.binance.com/api/v3/ticker/24hr?symbol=${pare}`,
-      {
-        method: "GET",
-        next: { revalidate: 60 },
-      },
-    );
-
-    if (!res.ok) return null;
-    return await res.json();
-  } catch (error) {
-    console.error("Failed to load BTC price:", error);
-    return null;
-  }
-}
 
 interface CryptoCardProps {
   pare: string;
 }
 
-export async function CryptoCard({ pare }: CryptoCardProps) {
-  const coin = await getCoinPrice({ pare: pare });
-  const getCoinPare = coin?.symbol.slice(0, 3);
+export function CryptoCard({ pare }: CryptoCardProps) {
+  const [coin, setCoin] = useState<CoinData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function getCoinPrice() {
+      try {
+        setLoading(true);
+        // This request now executes directly from the user's browser IP
+        const res = await fetch(
+          `https://api.binance.com/api/v3/ticker/24hr?symbol=${pare}`,
+        );
+
+        if (!res.ok) {
+          setCoin(null);
+        } else {
+          const data = await res.json();
+          setCoin(data);
+        }
+      } catch (error) {
+        console.error("Failed to load coin price:", error);
+        setCoin(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getCoinPrice();
+
+    // Optional: Refresh data every 60 seconds automatically on the client side
+    const interval = setInterval(getCoinPrice, 60000);
+    return () => clearInterval(interval);
+  }, [pare]);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          padding: "24px",
+          fontFamily: "sans-serif",
+          color: "#a1a1a1",
+          width: "240px",
+        }}
+      >
+        ⌛ Loading {pare}...
+      </div>
+    );
+  }
 
   if (!coin) {
     return (
-      <p style={{ padding: "24px", fontFamily: "sans-serif", color: "red" }}>
+      <p
+        style={{
+          padding: "24px",
+          fontFamily: "sans-serif",
+          color: "red",
+          width: "240px",
+        }}
+      >
         ⚠️ Error loading Coin data
       </p>
     );
   }
 
+  const coinPare = `${coin.symbol.slice(0, 3)}/USDT`;
   const isPositive = parseFloat(coin.priceChangePercent) >= 0;
   const formattedPrice = parseFloat(coin.lastPrice).toLocaleString(undefined, {
     minimumFractionDigits: 2,
@@ -64,7 +98,7 @@ export async function CryptoCard({ pare }: CryptoCardProps) {
           letterSpacing: "0.5px",
         }}
       >
-        {getCoinPare}/USDT
+        {coinPare}
       </h3>
 
       <p className="text-xl">${formattedPrice}</p>
