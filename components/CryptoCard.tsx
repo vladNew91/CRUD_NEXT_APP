@@ -1,60 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { CoinData } from "@/types";
+import { use } from "react";
+import { getCoinPricePromise } from "@/helpers";
 
 interface CryptoCardProps {
   pare: string;
 }
 
 export function CryptoCard({ pare }: CryptoCardProps) {
-  const [coin, setCoin] = useState<CoinData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    async function getCoinPrice() {
-      try {
-        setLoading(true);
-        // This request now executes directly from the user's browser IP
-        const res = await fetch(
-          `https://api.binance.com/api/v3/ticker/24hr?symbol=${pare}`,
-        );
-
-        if (!res.ok) {
-          setCoin(null);
-        } else {
-          const data = await res.json();
-          setCoin(data);
-        }
-      } catch (error) {
-        console.error("Failed to load coin price:", error);
-        setCoin(null);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    getCoinPrice();
-
-    // Optional: Refresh data every 60 seconds automatically on the client side
-    const interval = setInterval(getCoinPrice, 60000);
-    return () => clearInterval(interval);
-  }, [pare]);
-
-  if (loading) {
-    return (
-      <div
-        style={{
-          padding: "24px",
-          fontFamily: "sans-serif",
-          color: "#a1a1a1",
-          width: "240px",
-        }}
-      >
-        ⌛ Loading {pare}...
-      </div>
-    );
-  }
+  const coin = use(getCoinPricePromise(pare));
 
   if (!coin) {
     return (
@@ -71,12 +25,9 @@ export function CryptoCard({ pare }: CryptoCardProps) {
     );
   }
 
-  const coinPare = `${coin.symbol.slice(0, 3)}/USDT`;
+  const getCoinPare = `${coin.symbol.slice(0, 3)}/USDT`;
   const isPositive = parseFloat(coin.priceChangePercent) >= 0;
-  const formattedPrice = parseFloat(coin.lastPrice).toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+  const formattedPrice = parseFloat(coin.lastPrice).toLocaleString();
 
   return (
     <div
@@ -98,7 +49,7 @@ export function CryptoCard({ pare }: CryptoCardProps) {
           letterSpacing: "0.5px",
         }}
       >
-        {coinPare}
+        {getCoinPare}
       </h3>
 
       <p className="text-xl">${formattedPrice}</p>
