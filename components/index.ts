@@ -8,3 +8,4 @@ export * from "./MobileMenu";
 export * from "./ui";
 export * from "./btc-chart";
 export * from "./CryptoCard";
+export * from "./CryptoCardsList";

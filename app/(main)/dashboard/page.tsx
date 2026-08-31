@@ -1,18 +1,8 @@
-import { BtcChart, CryptoCard } from "@/components";
+export const dynamic = "force-dynamic"; // stop Vercel build errors
+
+import { BtcChart, CryptoCardsList } from "@/components";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
-
-const coinsPares = [
-  "BTCUSDT",
-  "ETHUSDT",
-  "XRPUSDT",
-  "BCHUSDT",
-  "BNBUSDT",
-  "DOGEUSDT",
-  "ZECUSDT",
-  "XMRUSDT",
-];
 
 export default async function Dashboard() {
   const supabase = await createClient();
@@ -28,13 +18,7 @@ export default async function Dashboard() {
       <h1 className="my-4 text-2xl">Welcome, {user.email}</h1>
       <BtcChart />
 
-      <div className="my-10 flex flex-row flex-wrap gap-3">
-        {coinsPares.map((el, i: number) => (
-          <Suspense fallback={<span>Loading...</span>} key={i}>
-            <CryptoCard pare={el} />
-          </Suspense>
-        ))}
-      </div>
+      <CryptoCardsList />
     </section>
   );
 }

@@ -1,15 +1,10 @@
-"use client";
-
-import { use } from "react";
-import { getCoinPricePromise } from "@/helpers";
+import { CoinData } from "@/types";
 
 interface CryptoCardProps {
-  pare: string;
+  coin: CoinData | null;
 }
 
-export function CryptoCard({ pare }: CryptoCardProps) {
-  const coin = use(getCoinPricePromise(pare));
-
+export function CryptoCard({ coin }: CryptoCardProps) {
   if (!coin) {
     return (
       <p
