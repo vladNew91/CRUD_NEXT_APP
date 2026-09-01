@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Post } from "@/types";
 import { DeleteButton } from "@/components";
-import { cookies } from "next/headers";
 import { cn } from "@/utils/utils";
 
 type PostsListProps = {
@@ -9,10 +8,6 @@ type PostsListProps = {
 };
 
 export default async function PostsList({ posts }: PostsListProps) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token");
-  console.log(token);
-
   return (
     <ul>
       {posts &&
@@ -37,3 +32,9 @@ export default async function PostsList({ posts }: PostsListProps) {
     </ul>
   );
 }
+
+export const getServerSideProps = async () => {
+  return {
+    props: {},
+  };
+};

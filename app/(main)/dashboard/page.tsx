@@ -1,8 +1,7 @@
-export const dynamic = "force-dynamic"; // stop Vercel build errors
-
-import { BtcChart, CryptoCardsList } from "@/components";
-import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import { BtcChart } from "@/components";
+import { createClient } from "@/utils/supabase/server";
+import { CryptoCardsList } from "@/components/CryptoCardsList";
 
 export default async function Dashboard() {
   const supabase = await createClient();
@@ -15,9 +14,9 @@ export default async function Dashboard() {
 
   return (
     <section className="w-full px-3">
-      <h1 className="my-4 text-2xl">Welcome, {user.email}</h1>
-      <BtcChart />
+      <h1 className="my-4 text-2xl font-semibold">Welcome, {user.email}</h1>
 
+      <BtcChart />
       <CryptoCardsList />
     </section>
   );

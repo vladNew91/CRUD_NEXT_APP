@@ -1,5 +1,5 @@
-import { getCoinPricePromise } from "@/helpers";
-import { CryptoCard } from "@/components";
+import { Suspense } from "react";
+import { CryptoCard, CryptoCardSkeleton } from "@/components";
 
 const coinsPares = [
   "BTCUSDT",
@@ -12,18 +12,14 @@ const coinsPares = [
   "XMRUSDT",
 ];
 
-export const CryptoCardsList = async () => {
-  const coinsData = await Promise.all(
-    coinsPares.map((el) => getCoinPricePromise(el)),
-  );
-
+export const CryptoCardsList = () => {
   return (
     <div className="my-10 flex flex-row flex-wrap gap-3">
-      {coinsData.map((coin, i) => {
-        if (!coin) return <div key={i}>Error loading data</div>;
-
-        return <CryptoCard coin={coin} key={coin.symbol || i} />;
-      })}
+      {coinsPares.map((coinPare, i) => (
+        <Suspense key={i} fallback={<CryptoCardSkeleton />}>
+          <CryptoCard coinPare={coinPare} />
+        </Suspense>
+      ))}
     </div>
   );
 };

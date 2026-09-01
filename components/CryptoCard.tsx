@@ -1,24 +1,19 @@
-import { CoinData } from "@/types";
+"use client";
+
+import { use, useMemo } from "react";
+import { cn } from "@/utils/utils";
+import { getCoinPricePromise } from "@/helpers";
 
 interface CryptoCardProps {
-  coin: CoinData | null;
+  coinPare: string;
 }
 
-export function CryptoCard({ coin }: CryptoCardProps) {
-  if (!coin) {
-    return (
-      <p
-        style={{
-          padding: "24px",
-          fontFamily: "sans-serif",
-          color: "red",
-          width: "240px",
-        }}
-      >
-        ⚠️ Error loading Coin data
-      </p>
-    );
-  }
+export function CryptoCard({ coinPare }: CryptoCardProps) {
+  const coinPricePromise = useMemo(() => {
+    return getCoinPricePromise(coinPare);
+  }, [coinPare]);
+
+  const coin = use(coinPricePromise);
 
   const getCoinPare = `${coin.symbol.slice(0, 3)}/USDT`;
   const isPositive = parseFloat(coin.priceChangePercent) >= 0;
@@ -26,38 +21,22 @@ export function CryptoCard({ coin }: CryptoCardProps) {
 
   return (
     <div
-      style={{
-        padding: "24px",
-        borderRadius: "16px",
-        boxShadow: "0 10px 15px -3px #4a4a4ac4",
-        backgroundColor: "#f4f0f006",
-        fontFamily: "sans-serif",
-        width: "240px",
-      }}
+      className={cn(
+        "rounded-2xl bg-[#f4f0f006] p-6 font-sans",
+        "w-[240px] shadow-[0_10px_15px_-3px_#4a4a4ac4]",
+      )}
     >
-      <h3
-        style={{
-          margin: "0 0 6px 0",
-          color: "#a1a1a1",
-          fontSize: "14px",
-          fontWeight: "600",
-          letterSpacing: "0.5px",
-        }}
-      >
+      <h3 className="mb-[6px] text-sm font-semibold tracking-[0.5px] text-[#a1a1a1]">
         {getCoinPare}
       </h3>
 
       <p className="text-xl">${formattedPrice}</p>
 
       <span
-        style={{
-          color: isPositive ? "#16a34a" : "#dc2626",
-          fontWeight: "700",
-          fontSize: "14px",
-          padding: "6px 10px",
-          borderRadius: "8px",
-          display: "inline-block",
-        }}
+        className={cn(
+          `inline-block rounded-lg px-2.5 py-1.5 text-sm font-bold`,
+          `${isPositive ? "text-green-600" : "text-red-600"}`,
+        )}
       >
         {isPositive ? "▲" : "▼"}{" "}
         {Math.abs(parseFloat(coin.priceChangePercent)).toFixed(2)}%
