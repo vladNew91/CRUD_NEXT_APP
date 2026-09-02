@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { BtcChart } from "@/components";
 import { createClient } from "@/utils/supabase/server";
-import { CryptoCardsList } from "@/components/CryptoCardsList";
 
 export default async function Dashboard() {
   const supabase = await createClient();
@@ -13,11 +12,10 @@ export default async function Dashboard() {
   if (!user) redirect("/signin");
 
   return (
-    <section className="w-full px-3">
+    <section className="w-full p-3">
       <h1 className="my-4 text-2xl font-semibold">Welcome, {user.email}</h1>
 
       <BtcChart />
-      <CryptoCardsList />
     </section>
   );
 }

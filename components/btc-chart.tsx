@@ -126,15 +126,15 @@ export function BtcChart() {
 
       <CardContent className="pt-6">
         {error ? (
-          <div className="text-muted-foreground flex h-[320px] items-center justify-center text-sm">
+          <div className="text-muted-foreground flex h-[400px] items-center justify-center text-sm">
             Failed to load price data. Please try again.
           </div>
         ) : isLoading && points.length === 0 ? (
-          <div className="text-muted-foreground flex h-[320px] items-center justify-center text-sm">
+          <div className="text-muted-foreground flex h-[400px] items-center justify-center text-sm">
             Loading price history…
           </div>
         ) : (
-          <ChartContainer config={chartConfig} className="h-[320px] w-full">
+          <ChartContainer config={chartConfig} className="h-[400px] w-full">
             <AreaChart data={points} margin={{ left: 12, right: 12, top: 8 }}>
               <defs>
                 <linearGradient id="fillPrice" x1="0" y1="0" x2="0" y2="1">

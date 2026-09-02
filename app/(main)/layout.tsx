@@ -33,7 +33,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-screen flex-col">
         <Header appName={appName} />
-        <main className="m-auto flex max-w-7xl">{children}</main>
+        <main className="m-auto flex w-full justify-center">{children}</main>
         <Footer appName={appName} />
         <Analytics />
       </body>
