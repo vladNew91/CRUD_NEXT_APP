@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { BtcChart } from "@/components";
+import { BtcChart } from "@/components/btc-chart";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function Dashboard() {
@@ -12,10 +12,12 @@ export default async function Dashboard() {
   if (!user) redirect("/signin");
 
   return (
-    <section className="w-full p-3">
-      <h1 className="my-4 text-2xl font-semibold">Welcome, {user.email}</h1>
+    <>
+      <h1 className="my-4 p-3 text-2xl font-semibold">Welcome, {user.email}</h1>
 
-      <BtcChart />
-    </section>
+      <section className="w-full p-3">
+        <BtcChart />
+      </section>
+    </>
   );
 }

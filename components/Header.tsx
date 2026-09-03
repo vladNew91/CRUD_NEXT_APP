@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { PopoverGroup } from "@headlessui/react";
 import { HiOutlineHome } from "react-icons/hi2";
-import { MobileMenu } from "./MobileMenu";
-import { SignOutBtn } from "../components";
 import { createClient } from "@/utils/supabase/server";
+import { MobileMenu } from "@/components/MobileMenu";
+import { SignOutBtn } from "./SignOutBtn";
 
 interface HeaderProps {
   appName?: string;

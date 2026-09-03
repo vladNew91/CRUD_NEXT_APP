@@ -1,9 +1,10 @@
-import { updatePost } from "../actions";
-import notFound from "@/app/not-found";
-import ErrorPage from "@/app/error";
 import { Post } from "@/types";
-import { supabase } from "@/utils/supabase/client";
 import { cn } from "@/utils/utils";
+import ErrorPage from "@/app/error";
+import notFound from "@/app/not-found";
+import { updatePost } from "../actions";
+import { supabase } from "@/utils/supabase/client";
+import { SubmitFormButton } from "@/components/SubmitFormBtn";
 
 type PostPageProps = {
   params: Promise<{ id: number }>;
@@ -29,10 +30,12 @@ export default async function PostPage({ params }: PostPageProps) {
     >
       <form className="space-y-4" action={updatePost}>
         <h3>Edit post</h3>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Title
           </label>
+
           <input
             type="text"
             defaultValue={post.title}
@@ -45,10 +48,12 @@ export default async function PostPage({ params }: PostPageProps) {
             required
           />
         </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Content
           </label>
+
           <input
             type="text"
             defaultValue={post.body}
@@ -61,13 +66,9 @@ export default async function PostPage({ params }: PostPageProps) {
             required
           />
         </div>
+
         <input type="hidden" id="id" name="id" value={id} />
-        <button
-          type="submit"
-          className="w-full rounded-lg bg-blue-600 py-2 text-white hover:bg-blue-700"
-        >
-          Update
-        </button>
+        <SubmitFormButton title="Update" />
       </form>
     </section>
   );

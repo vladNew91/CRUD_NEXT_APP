@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Post } from "@/types";
-import { DeleteButton } from "@/components";
 import { cn } from "@/utils/utils";
+import { DeletePostButton } from "@/components/DeletePostButton";
 
 type PostsListProps = {
   posts: Post[];
@@ -26,7 +26,7 @@ export default async function PostsList({ posts }: PostsListProps) {
               <span className="text-sm text-gray-400">{post.body}</span>
             </Link>
 
-            <DeleteButton id={post.id} />
+            <DeletePostButton id={post.id} />
           </li>
         ))}
     </ul>

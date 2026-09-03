@@ -85,7 +85,7 @@ export function BtcChart() {
           <CardTitle className="text-3xl font-semibold tabular-nums">
             {last ? usdPrecise.format(last) : "—"}
           </CardTitle>
-          {!isLoading && !error && first && (
+          {!isLoading && !error && first ? (
             <div
               className={`flex items-center gap-1 text-sm font-medium ${
                 isUp ? "text-chart-1" : "text-destructive"
@@ -98,6 +98,8 @@ export function BtcChart() {
               </span>
               <span className="text-muted-foreground">· {range}</span>
             </div>
+          ) : (
+            <div className="h-[20px]"></div>
           )}
         </div>
 

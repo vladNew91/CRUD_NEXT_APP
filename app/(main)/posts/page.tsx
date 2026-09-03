@@ -3,6 +3,7 @@ import { Post } from "@/types";
 import ErrorPage from "@/app/error";
 import PostsList from "@/components/PostsList";
 import { supabase } from "@/utils/supabase/client";
+import { PostsListSkeleton } from "@/components/PostsListSkeleton";
 
 export default async function PostsPage() {
   const { data: posts, error } = await supabase
@@ -19,17 +20,15 @@ export default async function PostsPage() {
         All posts: <b>{countPosts}</b>
       </h2>
 
-      {/* Empty State */}
-      {posts.length === 0 && (
+      {posts.length === 0 ? (
         <div className="rounded-2xl py-16 text-center shadow-sm dark:bg-gray-800">
           <p className="text-lg font-medium text-slate-400">No posts found</p>
         </div>
+      ) : (
+        <Suspense fallback={<PostsListSkeleton />}>
+          <PostsList posts={posts} />
+        </Suspense>
       )}
-
-      {/* List of Posts */}
-      <Suspense fallback={<>Loading data...</>}>
-        <PostsList posts={posts} />
-      </Suspense>
     </section>
   );
 }

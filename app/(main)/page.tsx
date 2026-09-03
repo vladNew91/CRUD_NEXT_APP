@@ -1,6 +1,7 @@
 import { cn } from "@/utils/utils";
 import { createPost } from "./posts/actions";
-import { SubmitFormButton, CreatePostWelcome } from "@/components";
+import { CreatePostWelcome } from "@/components/ui/create-post-welcome";
+import { SubmitFormButton } from "@/components/SubmitFormBtn";
 
 export default async function Home() {
   return (
@@ -45,6 +46,7 @@ export default async function Home() {
             required
           />
         </div>
+
         <SubmitFormButton title="Create post" />
       </form>
     </div>

@@ -6,7 +6,7 @@ type DeleteButtonProps = {
   id: number;
 };
 
-export const DeleteButton = ({ id }: DeleteButtonProps) => {
+export const DeletePostButton = ({ id }: DeleteButtonProps) => {
   const handleDelete = () => deletePost(id);
 
   return (

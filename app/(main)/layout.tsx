@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Header, Footer } from "@/components";
 import { Analytics } from "@vercel/analytics/next";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import "./../globals.css";
 
-const appName = "CRUD Next App";
+const appName = "Auth CRUD Dashboard";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
