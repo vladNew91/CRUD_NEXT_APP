@@ -4,8 +4,18 @@ export type Post = {
   body?: string;
 };
 
-export interface CoinData {
+export type CoinInfo = {
   symbol: string;
-  lastPrice: string;
-  priceChangePercent: string;
-}
+  last: string;
+  last_btc: string;
+  lowest: string;
+  highest: string;
+  date: string;
+  daily_change_percentage: string;
+  source_exchange: string;
+};
+
+export type CoinData = {
+  status: string;
+  symbols: CoinInfo[];
+};
